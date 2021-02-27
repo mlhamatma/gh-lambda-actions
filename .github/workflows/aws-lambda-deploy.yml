@@ -28,6 +28,10 @@ jobs:
         run: |
          echo "Here is the region: $AWS_REGION"
       - name: Send greeting
+        - env:
+            AWSR: ${{ secrets.AWS_REGION }}
+            MY_AWSR: us-west-2
+            AWSAPIK: ${{ secrets.AWS_ACCESS_KEY_ID }}
         run: env
       - name: deploy zip to aws lambda
         uses: appleboy/lambda-action@master
