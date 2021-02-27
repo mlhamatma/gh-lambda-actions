@@ -20,10 +20,9 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies, Build application and Zip dist folder contents
         run: npm install && npm run build && zip -qq -r -j ./bundle.zip ./dist/*
-      - name: Output info needed to show working
       - shell: bash
         env:
-          AWS_REGION= ${{ secrets.AWS_REGION}}
+          AWS_REGION: ${{ secrets.AWS_REGION}}
         run: |
          echo "Here is the region: $AWS_REGION"
       - name: deploy zip to aws lambda
