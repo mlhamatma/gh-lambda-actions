@@ -33,6 +33,11 @@ jobs:
             MY_AWSR: us-west-2
             AWSAPIK: ${{ secrets.AWS_ACCESS_KEY_ID }}
         run: env
+      - name: Run shell
+        run: ./.github/scripts/showAWS.sh
+        env:
+         AWS_ACCESS_KEY_ID: ${{ AWS_ACCESS_KEY_ID }}
+         AWS_REGION: ${{ AWS_REGION }}
       - name: deploy zip to aws lambda
         uses: appleboy/lambda-action@master
         with:
