@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies, Build application and Zip dist folder contents
         run: npm install && npm run build && zip -qq -r -j ./bundle.zip ./dist/*
       - name: Output info needed to show working
-        run: echo "Here is the region: ${AWS-REGION}"
+        run: echo "Here is the region: $AWS-REGION"
         env:
           AWS-REGION= ${{ secrets.AWS_REGION}}
       - name: deploy zip to aws lambda
