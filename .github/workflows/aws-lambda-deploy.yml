@@ -22,9 +22,9 @@ jobs:
         run: npm install && npm run build && zip -qq -r -j ./bundle.zip ./dist/*
       
       - uses: actions/checkout@v2
-      - shell: bash
         env:
           AWS_REGION: ${{ secrets.AWS_REGION }}
+      - shell: bash
         run: |
          echo "Here is the region: $AWS_REGION"
       - name: Send greeting
