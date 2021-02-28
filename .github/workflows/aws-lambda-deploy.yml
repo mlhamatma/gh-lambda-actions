@@ -21,19 +21,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies, Build application and Zip dist folder contents
         run: npm install && npm run build && zip -qq -r -j ./bundle.zip ./dist/*
-      
-      - uses: actions/checkout@v2
-        env:
-          AWS_REGION: ${{ secrets.AWS_REGION }}
-      - shell: bash
-        run: |
-         echo "Here is the region: $AWS_REGION"
-      - name: Send greeting
-        env:
-            AWSR: ${{ secrets.AWS_REGION }}
-            MY_AWSR: us-west-2
-            AWSAPIK: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        run: env
       - name: Run shell
         run: ./.github/scripts/showAWS.sh
         env:
