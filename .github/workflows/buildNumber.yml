@@ -1,0 +1,21 @@
+name: lambda-depl
+
+on:
+  workflow_dispatch:
+    
+jobs:
+  deploy_source:
+    name: build and deploy lambda
+    environment: awc-dev
+    strategy:
+      matrix:
+        node-version: [12.x]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Get Git Version
+      uses: docker://gittools/gitversion:5.0.2-linux-centos-7-netcoreapp2.2
+      with:
+        args: /github/workspace /nofetch /exec /bin/sh /execargs "-c \"echo $GitVersion_MajorMinorPatch > /github/workspace/version.txt\""
+      - name: Show version
+         run: cat \"/github/workspace/version.txt\"
