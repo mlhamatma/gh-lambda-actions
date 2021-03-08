@@ -1,4 +1,4 @@
-name: lambda-depl
+name: BuildNumberTest
 
 on:
   workflow_dispatch:
